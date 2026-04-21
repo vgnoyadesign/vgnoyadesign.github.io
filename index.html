@@ -325,9 +325,10 @@
     /* ── PHOTO GRID ── */
     .photo-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
       gap: 1.5px;
+      height: 600px;
     }
     .photo-item {
       position: relative;
@@ -343,14 +344,14 @@
       transition: transform 0.6s ease;
     }
     .photo-item:hover img { transform: scale(1.04); }
-    /* autumn: top, full width */
-    .photo-autumn { grid-column: span 2; }
-    .photo-autumn img { aspect-ratio: 16/7; }
-    /* puddle: left, tall */
-    .photo-puddle { grid-row: span 2; }
-    .photo-puddle img { aspect-ratio: 3/4; min-height: 480px; }
-    /* dotpattern + running: right column stacked */
-    .photo-dotpattern img, .photo-running img { aspect-ratio: 4/3; }
+    /* autumn: left column, spans both rows */
+    .photo-autumn { grid-column: 1; grid-row: span 2; }
+    /* dotpattern: middle top */
+    .photo-dotpattern { grid-column: 2; grid-row: 1; }
+    /* running: middle bottom */
+    .photo-running { grid-column: 2; grid-row: 2; }
+    /* puddle: right column, spans both rows */
+    .photo-puddle { grid-column: 3; grid-row: span 2; }
     .photo-link-hint {
       position: absolute;
       top: 0.8rem;
@@ -779,21 +780,21 @@
 
   <div class="design-grid fade-up">
 
-    <!-- SciPhy Magazine: top left -->
-    <div class="design-item design-magazine" onclick="openModal('modal-sciphy')">
-      <img src="magazine-cover.jpg" alt="SciPhy Magazine Cover">
-      <div class="design-overlay">
-        <p class="overlay-title">SciPhy — Science & Physics Magazine</p>
-        <p class="overlay-meta">Editorial Design · InDesign · 2012</p>
-      </div>
-    </div>
-
-    <!-- Book Cover: right column, tall -->
-    <div class="design-item design-bookcover" onclick="openModal('modal-bookcover')">
+    <!-- Book Cover: top left, landscape -->
+    <div class="design-item design-magazine" onclick="openModal('modal-bookcover')">
       <img src="design-bookcover.jpg" alt="Boa Noite, Aimée Book Cover">
       <div class="design-overlay">
         <p class="overlay-title">Boa Noite, Aimée — Book Cover</p>
         <p class="overlay-meta">Editorial Design · 2016</p>
+      </div>
+    </div>
+
+    <!-- Magazine Cover: right column, tall portrait -->
+    <div class="design-item design-bookcover" onclick="openModal('modal-sciphy')">
+      <img src="magazine-cover.jpg" alt="SciPhy Magazine Cover">
+      <div class="design-overlay">
+        <p class="overlay-title">SciPhy — Science & Physics Magazine</p>
+        <p class="overlay-meta">Editorial Design · InDesign · 2012</p>
       </div>
     </div>
 
@@ -833,11 +834,6 @@
       <span class="view-full-btn">View full ⤢</span>
     </div>
 
-    <div class="photo-item photo-puddle" onclick="openLightbox('photo-puddle.jpg')">
-      <img src="photo-puddle.jpg" alt="Puddle Reflection">
-      <span class="view-full-btn">View full ⤢</span>
-    </div>
-
     <div class="photo-item photo-dotpattern" onclick="openLightbox('photo-dotpattern.jpg')">
       <img src="photo-dotpattern.jpg" alt="Dot Pattern">
       <span class="view-full-btn">View full ⤢</span>
@@ -845,6 +841,11 @@
 
     <div class="photo-item photo-running" onclick="openLightbox('photo-running.jpg')">
       <img src="photo-running.jpg" alt="Running">
+      <span class="view-full-btn">View full ⤢</span>
+    </div>
+
+    <div class="photo-item photo-puddle" onclick="openLightbox('photo-puddle.jpg')">
+      <img src="photo-puddle.jpg" alt="Puddle Reflection">
       <span class="view-full-btn">View full ⤢</span>
     </div>
 
