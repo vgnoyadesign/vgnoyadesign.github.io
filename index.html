@@ -588,6 +588,77 @@
       text-transform: uppercase;
     }
 
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(8,7,6,0.97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    #lightbox-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 2rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 301;
+    }
+    #lightbox-close:hover {
+      color: var(--cream);
+      border-color: var(--gold-dim);
+    }
+    .view-full-btn {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: rgba(12,11,9,0.85);
+      border: 1px solid rgba(201,168,76,0.5);
+      color: #c9a84c;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      font-family: var(--sans);
+    }
+    .photo-item:hover .view-full-btn,
+    .design-modal-img:hover .view-full-btn { opacity: 1; pointer-events: all; }
+    .design-modal-img {
+      position: relative;
+      display: block;
+      cursor: zoom-in;
+    }
+    .design-modal-img:hover .view-full-btn { opacity: 1; pointer-events: all; }
+
     /* ── ANIMATIONS ── */
     .fade-up {
       opacity: 0;
@@ -747,32 +818,24 @@
 
   <div class="photo-grid fade-up">
 
-    <div class="photo-item">
-      <a href="photo-autumn.jpg" target="_blank">
-        <img src="photo-autumn.jpg" alt="Autumn Park">
-        <span class="photo-link-hint">Open ↗</span>
-      </a>
+    <div class="photo-item" onclick="openLightbox('photo-autumn.jpg')" style="cursor:zoom-in;">
+      <img src="photo-autumn.jpg" alt="Autumn Park">
+      <span class="view-full-btn">View full ⤢</span>
     </div>
 
-    <div class="photo-item">
-      <a href="photo-dotpattern.jpg" target="_blank">
-        <img src="photo-dotpattern.jpg" alt="Dot Pattern">
-        <span class="photo-link-hint">Open ↗</span>
-      </a>
+    <div class="photo-item" onclick="openLightbox('photo-dotpattern.jpg')" style="cursor:zoom-in;">
+      <img src="photo-dotpattern.jpg" alt="Dot Pattern">
+      <span class="view-full-btn">View full ⤢</span>
     </div>
 
-    <div class="photo-item">
-      <a href="photo-running.jpg" target="_blank">
-        <img src="photo-running.jpg" alt="Running">
-        <span class="photo-link-hint">Open ↗</span>
-      </a>
+    <div class="photo-item" onclick="openLightbox('photo-running.jpg')" style="cursor:zoom-in;">
+      <img src="photo-running.jpg" alt="Running">
+      <span class="view-full-btn">View full ⤢</span>
     </div>
 
-    <div class="photo-item">
-      <a href="photo-puddle.jpg" target="_blank">
-        <img src="photo-puddle.jpg" alt="Puddle Reflection">
-        <span class="photo-link-hint">Open ↗</span>
-      </a>
+    <div class="photo-item" onclick="openLightbox('photo-puddle.jpg')" style="cursor:zoom-in;">
+      <img src="photo-puddle.jpg" alt="Puddle Reflection">
+      <span class="view-full-btn">View full ⤢</span>
     </div>
 
   </div>
@@ -839,6 +902,13 @@
 </footer>
 
 
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">← Return</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <!-- ════════════════════ MODALS ════════════════════ -->
 
 <!-- SCIPHY MODAL -->
@@ -867,10 +937,10 @@
     <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
       A complete book cover design for a debut YA fantasy novel, including the front cover illustration and typography, spine layout, and full back cover with synopsis, author biography, publisher logo, barcode, and excerpt pull quote. Demonstrates integrated typographic and visual thinking across a single printed object.
     </p>
-    <a href="design-bookcover.jpg" target="_blank" style="display:block;position:relative;">
+    <div class="design-modal-img" onclick="openLightbox('design-bookcover.jpg')" style="cursor:zoom-in;position:relative;">
       <img src="design-bookcover.jpg" alt="Boa Noite Aimee Book Cover" style="width:100%;display:block;">
-      <span style="position:absolute;top:1rem;right:1rem;background:rgba(12,11,9,0.8);border:1px solid #2a2720;color:#c9a84c;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;">View full size ↗</span>
-    </a>
+      <span class="view-full-btn">View full ⤢</span>
+    </div>
   </div>
 </div>
 
@@ -885,10 +955,10 @@
     <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
       Large-format event poster (48×63cm) for a live music event at a Rio de Janeiro shopping center. The design uses layered watercolor washes, a linear guitar illustration, and typographic hierarchy across multiple levels of information: headline act, event details, venue, and time.
     </p>
-    <a href="design-poster.jpg" target="_blank" style="display:block;position:relative;max-width:600px;margin:0 auto;">
+    <div class="design-modal-img" onclick="openLightbox('design-poster.jpg')" style="cursor:zoom-in;position:relative;max-width:600px;margin:0 auto;">
       <img src="design-poster.jpg" alt="Show Especial Poster" style="width:100%;display:block;">
-      <span style="position:absolute;top:1rem;right:1rem;background:rgba(12,11,9,0.8);border:1px solid #2a2720;color:#c9a84c;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;">View full size ↗</span>
-    </a>
+      <span class="view-full-btn">View full ⤢</span>
+    </div>
   </div>
 </div>
 
@@ -904,10 +974,10 @@
       A two-sided business card using dictionary-definition typography as a background texture — a conceptual approach that embeds the nature of the service into the visual language of the card itself. The front uses a minimal logo mark with a gradient gold ring; the back carries contact and services information against an all-over orange field. The system demonstrates brand thinking that extends concept into execution.
     </p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:600px;">
-      <a href="design-ehellen-bc.png" target="_blank" title="View full size" style="display:block;position:relative;">
-        <img src="design-ehellen-bc.png" alt="E.Hellen Business Card" style="width:100%;display:block;max-width:100%;">
-        <span style="position:absolute;top:1rem;right:1rem;background:rgba(12,11,9,0.8);border:1px solid #2a2720;color:#c9a84c;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;">View full size ↗</span>
-      </a>
+      <div class="design-modal-img" onclick="openLightbox('design-ehellen-bc.png')" style="cursor:zoom-in;position:relative;">
+        <img src="design-ehellen-bc.png" alt="E.Hellen Business Card" style="width:100%;display:block;">
+        <span class="view-full-btn">View full ⤢</span>
+      </div>
     </div>
   </div>
 </div>
@@ -1096,6 +1166,25 @@
 </div>
 
 <script>
+
+// Lightbox
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
 // Chapter 19 text
 const chapter19 = `<p>The cry of "Land ho!" came as Solarie began her weary descent, staining the southern clouds purple and orange. A cold, black coastline rose ahead, jagged as broken teeth against the bruised sky. Frosthelm crept into view, less a city than a scatter of flickering lights clutching the shoreline, all but swallowed by sea and snow.</p>
 
