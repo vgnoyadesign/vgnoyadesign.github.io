@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victor G. Noya — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0c0b09;
+      --surface:  #141310;
+      --border:   #2a2720;
+      --gold:     #c9a84c;
+      --gold-dim: #8a6f30;
+      --cream:    #e8e0d0;
+      --muted:    #7a7060;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --sans:     'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: linear-gradient(to bottom, rgba(12,11,9,0.98) 70%, transparent);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .logo span { color: var(--gold); }
+
+    nav { display: flex; gap: 2.2rem; }
+    nav a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--cream); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-rule {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+      top: 50%;
+      opacity: 0.3;
+    }
+
+    .hero-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--cream);
+      margin-bottom: 1.8rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: 3rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 50px;
+      background: var(--gold-dim);
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      padding: 6rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--cream);
+    }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin-left: 1rem;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1000px;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .about-text p strong {
+      color: var(--cream);
+      font-weight: 400;
+    }
+
+    .about-meta { }
+    .meta-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .meta-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+    .meta-value {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--cream);
+    }
+
+    /* ── DESIGN GRID ── */
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+    }
+
+    .design-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .design-item.tall { aspect-ratio: 3/4; }
+    .design-item.wide { grid-column: span 2; aspect-ratio: 16/7; }
+
+    .design-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease, filter 0.6s ease;
+      filter: brightness(0.85) saturate(0.9);
+    }
+    .design-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1) saturate(1);
+    }
+
+    .design-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+    }
+    .design-placeholder .ph-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .design-placeholder .ph-icon {
+      width: 30px; height: 30px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .design-placeholder .ph-icon::after {
+      content: '+';
+      color: var(--gold-dim);
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .design-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(12,11,9,0.92));
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    .design-item:hover .design-overlay { transform: translateY(0); }
+
+    .overlay-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+    .overlay-meta {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* ── PHOTO GRID ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+    }
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      cursor: pointer;
+    }
+    .photo-item:first-child { grid-column: span 2; }
+    .photo-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 1;
+      transition: transform 0.6s ease;
+    }
+    .photo-item:first-child img { aspect-ratio: 2/1; }
+    .photo-item:hover img { transform: scale(1.04); }
+
+    /* ── WRITING ── */
+    .writing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .writing-card {
+      background: var(--surface);
+      padding: 3rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      position: relative;
+    }
+    .writing-card:hover { background: #1a1815; }
+
+    .writing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .writing-card:hover::before { height: 100%; }
+
+    .writing-type {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1rem;
+    }
+    .writing-title {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+    .writing-excerpt {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .writing-cta {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .writing-cta::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+    .writing-card:hover .writing-cta::after { transform: translateX(4px); }
+
+    /* ── MODAL ── */
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,11,9,0.96);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      overflow-y: auto;
+    }
+    .modal-bg.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      max-width: 720px;
+      margin: 6rem auto;
+      padding: 3rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 2rem; right: 2.5rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s;
+      font-family: var(--sans);
+    }
+    .modal-close:hover { color: var(--cream); border-color: var(--gold-dim); }
+
+    .modal-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .modal-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .modal-subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+    .modal-rule {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    /* poem styles */
+    .poem-text {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 2.1;
+      color: var(--cream);
+    }
+    .poem-stanza { margin-bottom: 2rem; }
+    .poem-line { display: block; }
+
+    /* prose styles */
+    .prose {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #b0a898;
+    }
+    .prose p { margin-bottom: 1.4rem; }
+    .prose p:first-of-type::first-letter {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      float: left;
+      line-height: 0.8;
+      margin: 0.1rem 0.5rem 0 0;
+      color: var(--gold);
+    }
+    .prose .scene-break {
+      text-align: center;
+      color: var(--gold-dim);
+      margin: 2rem 0;
+      letter-spacing: 0.3em;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 6rem 3rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+    }
+
+    .contact-left .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .contact-left .contact-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .contact-left p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 380px;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+      gap: 1rem;
+    }
+    .contact-link:hover { color: var(--cream); }
+    .contact-link span:last-child {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      header { padding: 1.2rem 1.5rem; }
+      nav { gap: 1.5rem; }
+      #hero, section, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .about-grid, .writing-grid, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      .design-grid { grid-template-columns: 1fr 1fr; }
+      .design-item.wide { grid-column: span 2; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-item:first-child { grid-column: span 2; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      nav { display: none; }
+      .design-grid, .photo-grid { grid-template-columns: 1fr; }
+      .design-item.wide, .photo-item:first-child { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">Victor G. <span>Noya</span></a>
+  <nav>
+    <a href="#design">Design</a>
+    <a href="#photography">Photography</a>
+    <a href="#writing">Writing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-rule"></div>
+  <p class="hero-label">Portfolio — MSc Computational Media Design</p>
+  <h1 class="hero-name">Victor G.<br><em>Noya</em></h1>
+  <p class="hero-desc">
+    Visual designer, photographer, and narrative writer. A decade of professional practice across print, digital, and editorial media — now focused on the intersection of storytelling, world-building, and computational craft.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">Graphic Design</span>
+    <span class="hero-tag">Editorial</span>
+    <span class="hero-tag">Photography</span>
+    <span class="hero-tag">Narrative Fiction</span>
+    <span class="hero-tag">Poetry</span>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <span class="section-label">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="about-grid fade-up">
+    <div class="about-text">
+      <p>I hold a <strong>Bachelor of Science in Industrial Design</strong> with a specialization in Graphic Design from Universidade Estácio de Sá, Rio de Janeiro, and a postgraduate certificate in Industrial and Organizational Psychology.</p>
+      <p>My professional practice spans a decade of client work across branding, print, digital, and editorial media in Brazil, alongside ongoing independent design and a published poetry anthology credit in 2024.</p>
+      <p>For the past several years, my primary creative project has been an <strong>epic fantasy novel</strong> set in the world of Ethernos — a large-scale narrative system with original cosmology, a hard magic framework, and a cast of characters navigating civilization-scale stakes. I am interested in how computational tools and interactive media can extend, complicate, and deepen the practice of narrative world-building.</p>
+    </div>
+    <div class="about-meta">
+      <div class="meta-item">
+        <span class="meta-label">Location</span>
+        <span class="meta-value">Calgary, Alberta, Canada</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Education</span>
+        <span class="meta-value">B.Sc. Industrial Design — Estácio de Sá, 2016</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Languages</span>
+        <span class="meta-value">Portuguese (native) · English (professional)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Publication</span>
+        <span class="meta-value">Poesia Livre 2024, Antologia Poética Brasileira</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Contact</span>
+        <span class="meta-value">vgnoyadesign@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="design">
+  <div class="section-header fade-up">
+    <span class="section-label">02</span>
+    <h2 class="section-title">Design</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="design-grid fade-up">
+
+    <!-- SciPhy Magazine -->
+    <div class="design-item wide" onclick="openModal('modal-sciphy')">
+      <div class="design-placeholder">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with: sciphy_cover.jpg<br>or embed Revista_final_spreads.pdf</p>
+      </div>
+      <div class="design-overlay">
+        <p class="overlay-title">SciPhy — Science & Physics Magazine</p>
+        <p class="overlay-meta">Editorial Design · InDesign · 2012</p>
+      </div>
+    </div>
+
+    <!-- Book Cover -->
+    <div class="design-item" onclick="openModal('modal-bookcover')">
+      <div class="design-placeholder">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with: capa2.jpg</p>
+      </div>
+      <div class="design-overlay">
+        <p class="overlay-title">Boa Noite, Aimée — Book Cover</p>
+        <p class="overlay-meta">Editorial Design · 2016</p>
+      </div>
+    </div>
+
+    <!-- Show Especial Poster -->
+    <div class="design-item" onclick="openModal('modal-poster')">
+      <div class="design-placeholder">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with:<br>48x63-show-especial-thais-mattos.jpg</p>
+      </div>
+      <div class="design-overlay">
+        <p class="overlay-title">Show Especial Thais Mattos</p>
+        <p class="overlay-meta">Event Poster · 2014</p>
+      </div>
+    </div>
+
+    <!-- E.Hellen Business Card -->
+    <div class="design-item" onclick="openModal('modal-ehellen')">
+      <div class="design-placeholder">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with:<br>Cartão_frente.jpg + Cartão_verso.jpg</p>
+      </div>
+      <div class="design-overlay">
+        <p class="overlay-title">E.Hellen Traduções — Brand Identity</p>
+        <p class="overlay-meta">Business Card · Identity Design</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section id="photography">
+  <div class="section-header fade-up">
+    <span class="section-label">03</span>
+    <h2 class="section-title">Photography</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="photo-grid fade-up">
+
+    <div class="photo-item">
+      <div class="design-placeholder" style="aspect-ratio:2/1">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with:<br>PXL_20231009_221430533_2.jpg<br>(Autumn Park)</p>
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <div class="design-placeholder" style="aspect-ratio:1">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with:<br>PXL_20240310_225951478_exported.jpg<br>(Dot Pattern / B&W)</p>
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <div class="design-placeholder" style="aspect-ratio:1">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with:<br>PXL_20240310_230401877_PORTRAIT_2.jpg<br>(Running Child)</p>
+      </div>
+    </div>
+
+    <div class="photo-item">
+      <div class="design-placeholder" style="aspect-ratio:1">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Replace with:<br>PXL_20240406_222617455_PORTRAIT_2.jpg<br>(Puddle Reflection)</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="section-header fade-up">
+    <span class="section-label">04</span>
+    <h2 class="section-title">Writing</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="writing-grid fade-up">
+
+    <!-- Poem -->
+    <div class="writing-card" onclick="openModal('modal-poem')">
+      <p class="writing-type">Narrative Verse · Original Poetry</p>
+      <h3 class="writing-title">The Song of Ymaitá</h3>
+      <p class="writing-excerpt">
+        Before the first of us was born, the forest breathed without a morn. The silent trees spoke to none, neither wind nor empty stone. The living things would grow and fall, without a name or home at all. And no one held their memory, or marked their place in history.
+      </p>
+      <span class="writing-cta">Read the poem</span>
+    </div>
+
+    <!-- Chapter 19 -->
+    <div class="writing-card" onclick="openModal('modal-chapter')">
+      <p class="writing-type">Epic Fantasy · Novel in Progress</p>
+      <h3 class="writing-title">Chapter 19: Hearth of the Frostlands</h3>
+      <p class="writing-excerpt">
+        The cry of "Land ho!" came as Solarie began her weary descent, staining the southern clouds purple and orange. A cold, black coastline rose ahead, jagged as broken teeth against the bruised sky. Frosthelm crept into view, less a city than a scatter of flickering lights clutching the shoreline, all but swallowed by sea and snow.
+      </p>
+      <span class="writing-cta">Read the chapter</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left fade-up">
+    <h2 class="contact-title">Let's<br><em>connect.</em></h2>
+    <p>This portfolio was assembled in support of an application to the MSc Computational Media Design program at the University of Calgary. I am interested in research at the intersection of narrative design, world-building systems, and computational media.</p>
+  </div>
+  <div class="contact-right fade-up">
+    <a class="contact-link" href="mailto:vgnoyadesign@gmail.com">
+      <span>vgnoyadesign@gmail.com</span>
+      <span>Email</span>
+    </a>
+    <a class="contact-link" href="https://linkedin.com/in/victor-noya" target="_blank">
+      <span>linkedin.com/in/victor-noya</span>
+      <span>LinkedIn</span>
+    </a>
+    <a class="contact-link" href="victor_noya_cv_cmd.docx" download>
+      <span>Download CV</span>
+      <span>PDF / DOCX</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Victor G. Noya · Calgary, AB · 2025</p>
+  <p>Portfolio — MSc Computational Media Design</p>
+</footer>
+
+
+<!-- ════════════════════ MODALS ════════════════════ -->
+
+<!-- SCIPHY MODAL -->
+<div class="modal-bg" id="modal-sciphy">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-sciphy')">Close ✕</button>
+    <p class="modal-label">Editorial Design · InDesign CS6 · 2012</p>
+    <h2 class="modal-title">SciPhy</h2>
+    <p class="modal-subtitle">Science & Physics Magazine — College Thesis Project</p>
+    <div class="modal-rule"></div>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:1.5rem;">
+      A complete 24-page science magazine designed and edited as an undergraduate thesis project at Universidade Estácio de Sá. The project encompasses the full editorial pipeline: masthead design, typographic grid, cover hierarchy, interior spreads with multi-column body text, pull quotes, section headers, advertisements, and photography direction. Created in Adobe InDesign CS6 and produced to print-ready standards.
+    </p>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
+      The publication was credited under the name Victor Alfaia in the masthead, as editor and photography director, with contact listed as vgnoyadesign@gmail.com.
+    </p>
+    <!-- Embed PDF or place images here -->
+    <div class="design-placeholder" style="aspect-ratio:3/4;max-width:500px;">
+      <div class="ph-icon"></div>
+      <p class="ph-label">Embed Revista_final_spreads.pdf here<br>or place spread screenshots</p>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK COVER MODAL -->
+<div class="modal-bg" id="modal-bookcover">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-bookcover')">Close ✕</button>
+    <p class="modal-label">Editorial Design · 2016</p>
+    <h2 class="modal-title">Boa Noite, Aimée</h2>
+    <p class="modal-subtitle">Complete Book Cover Design — Front, Spine & Back</p>
+    <div class="modal-rule"></div>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
+      A complete book cover design for a debut YA fantasy novel, including the front cover illustration and typography, spine layout, and full back cover with synopsis, author biography, publisher logo, barcode, and excerpt pull quote. Demonstrates integrated typographic and visual thinking across a single printed object.
+    </p>
+    <div class="design-placeholder" style="aspect-ratio:16/9;max-width:600px;">
+      <div class="ph-icon"></div>
+      <p class="ph-label">Replace with: capa2.jpg<br>(full wrap showing front, spine, back)</p>
+    </div>
+  </div>
+</div>
+
+<!-- POSTER MODAL -->
+<div class="modal-bg" id="modal-poster">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-poster')">Close ✕</button>
+    <p class="modal-label">Event Poster · Large Format Print · 2014</p>
+    <h2 class="modal-title">Show Especial Thais Mattos</h2>
+    <p class="modal-subtitle">Nilópolis Square Shopping Center — Anniversary Event</p>
+    <div class="modal-rule"></div>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
+      Large-format event poster (48×63cm) for a live music event at a Rio de Janeiro shopping center. The design uses layered watercolor washes, a linear guitar illustration, and typographic hierarchy across multiple levels of information: headline act, event details, venue, and time.
+    </p>
+    <div class="design-placeholder" style="aspect-ratio:3/4;max-width:400px;">
+      <div class="ph-icon"></div>
+      <p class="ph-label">Replace with:<br>48x63-show-especial-thais-mattos.jpg</p>
+    </div>
+  </div>
+</div>
+
+<!-- E.HELLEN MODAL -->
+<div class="modal-bg" id="modal-ehellen">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-ehellen')">Close ✕</button>
+    <p class="modal-label">Brand Identity · Business Card Design</p>
+    <h2 class="modal-title">E.Hellen Traduções</h2>
+    <p class="modal-subtitle">Visual Identity — Translation Services</p>
+    <div class="modal-rule"></div>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
+      A two-sided business card using dictionary-definition typography as a background texture — a conceptual approach that embeds the nature of the service into the visual language of the card itself. The front uses a minimal logo mark with a gradient gold ring; the back carries contact and services information against an all-over orange field. The system demonstrates brand thinking that extends concept into execution.
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:600px;">
+      <div class="design-placeholder" style="aspect-ratio:16/9;">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Cartão_frente.jpg</p>
+      </div>
+      <div class="design-placeholder" style="aspect-ratio:16/9;">
+        <div class="ph-icon"></div>
+        <p class="ph-label">Cartão_verso.jpg</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POEM MODAL -->
+<div class="modal-bg" id="modal-poem">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-poem')">Close ✕</button>
+    <p class="modal-label">Original Verse · Epic Fantasy · Ethernos</p>
+    <h2 class="modal-title">The Song of Ymaitá</h2>
+    <p class="modal-subtitle">A creation myth from the world of Ethernos, written in the oral tradition of the forest peoples</p>
+    <div class="modal-rule"></div>
+    <p style="color:var(--muted);font-size:0.85rem;line-height:1.7;margin-bottom:2rem;">
+      This poem is an in-world artefact from an ongoing epic fantasy novel. It functions as a creation myth for a forest civilization, tracing the origin of their people through the love between a mortal healer and the god Sylvarius. Written in an English oral-tradition cadence, it was composed as part of the novel's world-building practice — an attempt to build culture from the inside out, through the texts a people might actually carry.
+    </p>
+    <div class="poem-text">
+      <div class="poem-stanza">
+        <span class="poem-line">Before the first of us was born,</span>
+        <span class="poem-line">The forest breathed without a morn.</span>
+        <span class="poem-line">The silent trees spoke to none,</span>
+        <span class="poem-line">Neither wind nor empty stone.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">The living things would grow and fall,</span>
+        <span class="poem-line">Without a name or home at all.</span>
+        <span class="poem-line">And no one held their memory,</span>
+        <span class="poem-line">Or marked their place in history.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">Then she was born and he took heed,</span>
+        <span class="poem-line">Her soul was bright in word and deed.</span>
+        <span class="poem-line">For Sylvarius watched her shine,</span>
+        <span class="poem-line">A mortal spark of pure design.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">Her name was lost in distant years,</span>
+        <span class="poem-line">Before the trees had shed their fears.</span>
+        <span class="poem-line">She walked upon the broken ground,</span>
+        <span class="poem-line">To heal the wound and what was bound.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">She laid her hands on wounded bark,</span>
+        <span class="poem-line">To light a fire within the dark.</span>
+        <span class="poem-line">The old and dying heard her call,</span>
+        <span class="poem-line">And green began to bloom for all.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">We call her Ymaitá the old,</span>
+        <span class="poem-line">The one the forest came to hold.</span>
+        <span class="poem-line">We call her Yamay, made of light,</span>
+        <span class="poem-line">A name to carry through the night.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">The god had heard her spirit first,</span>
+        <span class="poem-line">From root and leaf and salty thirst.</span>
+        <span class="poem-line">Between the falling of the leaf,</span>
+        <span class="poem-line">And where it came to find relief.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He listened from the deepest place,</span>
+        <span class="poem-line">To see the glory of her face.</span>
+        <span class="poem-line">He came because a simple truth,</span>
+        <span class="poem-line">Can pull a god to mortal youth.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He wore a shape she would not fear,</span>
+        <span class="poem-line">To walk beside her, always near.</span>
+        <span class="poem-line">Through gold and green and misty dew,</span>
+        <span class="poem-line">He learned of things he never knew.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He learned the ache of hunger's bread,</span>
+        <span class="poem-line">He learned the weight of mortal dread.</span>
+        <span class="poem-line">He learned to love a thing of gold,</span>
+        <span class="poem-line">That wind could take but he could hold.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">Their love kept every thicket bound,</span>
+        <span class="poem-line">Where life was fierce and deep and sound.</span>
+        <span class="poem-line">The roots reached far beneath the clay,</span>
+        <span class="poem-line">The branches stretched to meet the day.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">But she was mortal, time was fast,</span>
+        <span class="poem-line">A shadow on the field was cast.</span>
+        <span class="poem-line">The turning seasons, iron-clad,</span>
+        <span class="poem-line">Left Sylvarius dark and sad.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">For soon would come the winter grey,</span>
+        <span class="poem-line">Her silver hair would fade away.</span>
+        <span class="poem-line">He knew that leaves must always fall,</span>
+        <span class="poem-line">And death would come to claim them all.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">But seasons care not for a god,</span>
+        <span class="poem-line">Nor for the path where feet have trod.</span>
+        <span class="poem-line">There came a day her breath was drawn,</span>
+        <span class="poem-line">And left him in a grey-eyed dawn.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He grieved a pain so deep and new,</span>
+        <span class="poem-line">It tore his ageless heart in two.</span>
+        <span class="poem-line">He wept a sea for her alone,</span>
+        <span class="poem-line">That cut through root and mountain stone.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">From every drop that hit the floor,</span>
+        <span class="poem-line">A thousand rushing rivers bore.</span>
+        <span class="poem-line">He buried her with his own hands,</span>
+        <span class="poem-line">Who shaped the seas and all the lands.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He gave the earth his love and grief,</span>
+        <span class="poem-line">To buy the soil a small relief.</span>
+        <span class="poem-line">And there he stayed, a silent guard,</span>
+        <span class="poem-line">Upon the ground his tears had scarred.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">For he had learned a truth that day:</span>
+        <span class="poem-line">That love will never walk away.</span>
+        <span class="poem-line">He waited past the count of days,</span>
+        <span class="poem-line">Through frost and flood and silent gaze.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">Then, slow as only true things grow,</span>
+        <span class="poem-line">A tree rose from the dirt below.</span>
+        <span class="poem-line">It reached for light with holy grace,</span>
+        <span class="poem-line">To claim its home and hallowed place.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">Within a season with no name,</span>
+        <span class="poem-line">A single, prideful blossom came.</span>
+        <span class="poem-line">It opened to the stars at night,</span>
+        <span class="poem-line">A silver bloom of sacred light.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">From it there stepped a child of earth,</span>
+        <span class="poem-line">Of moss and rain and holy birth.</span>
+        <span class="poem-line">The first of us was born that day,</span>
+        <span class="poem-line">And Sylvarius cleared the way.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He wept for love and not for grief,</span>
+        <span class="poem-line">For she was born without being brief.</span>
+        <span class="poem-line">She had her mother's face and hands,</span>
+        <span class="poem-line">Beyond the reach of death's commands.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">For his own blessing shaped her soul,</span>
+        <span class="poem-line">To make the broken spirit whole.</span>
+        <span class="poem-line">He called her Ymaitá the old,</span>
+        <span class="poem-line">The one the woods were meant to hold.</span>
+      </div>
+      <div class="poem-stanza">
+        <span class="poem-line">He called her Yamay, what she was,</span>
+        <span class="poem-line">Beneath the weight of ancient laws.</span>
+        <span class="poem-line">"You are what's left," he whispered low,</span>
+        <span class="poem-line">"When love refuses grief to grow."</span>
+      </div>
+      <div class="poem-stanza" style="margin-top:2.5rem;">
+        <span class="poem-line" style="font-style:italic;">We have not forgotten.</span>
+        <span class="poem-line" style="font-style:italic;">We will not forget.</span>
+        <span class="poem-line" style="font-style:italic;">Our roots have never withered.</span>
+        <span class="poem-line" style="font-style:italic;">And we still remember, yet.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 19 MODAL -->
+<div class="modal-bg" id="modal-chapter">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-chapter')">Close ✕</button>
+    <p class="modal-label">Epic Fantasy Novel · Ethernos · First Draft</p>
+    <h2 class="modal-title">Chapter 19</h2>
+    <p class="modal-subtitle">Hearth of the Frostlands — from an ongoing novel set in the world of Ethernos</p>
+    <div class="modal-rule"></div>
+    <p style="color:var(--muted);font-size:0.85rem;line-height:1.7;margin-bottom:2rem;">
+      This chapter introduces the northern city of Frosthelm and is presented here as a working draft. The novel follows a diverse ensemble cast working against time to prevent a cataclysm threatening the world of Ethernos. This chapter was chosen for the portfolio because it demonstrates character voice, ensemble dynamics, cultural world-building through immersive detail, and narrative tension without reliance on action — skills I am most interested in developing through graduate research.
+    </p>
+    <div class="prose" id="chapter19-text">
+      <!-- Chapter text injected by JS to keep HTML clean -->
+    </div>
+  </div>
+</div>
+
+<script>
+// Chapter 19 text
+const chapter19 = `<p>The cry of "Land ho!" came as Solarie began her weary descent, staining the southern clouds purple and orange. A cold, black coastline rose ahead, jagged as broken teeth against the bruised sky. Frosthelm crept into view, less a city than a scatter of flickering lights clutching the shoreline, all but swallowed by sea and snow.</p>
+
+<p>Wind's Whisper slowed her approach. The harbor ahead looked silent, the water still as iron. Above the ship, the flag of Verdantheaven hung limp, offering no answer to whoever watched from the gloom. Auron joined Captain Oren at the helm, gaze fixed on those distant lights.</p>
+
+<p>"We could make the harbor before full dark, Captain. Why are we slowing?" Auron asked, voice quiet, steady.</p>
+
+<p>Oren squinted into the wind, lines of salt and years etched deep into his face. "Ain't no good in doing that, lad. You don't nose into any harbor at night, but this holds special truth to these northern ones. Not unless you're daft, desperate, or want a quiver full of trouble. Folk up here, they're jumpy as a cat on a griddle. Seen too many raiders come slippin' in on the black water. They'll shoot us first, ask questions never."</p>
+
+<p>He jerked his chin at their own mast. "Colors don't mean a thing in this light. Folk see shapes, shadows, nothing more. And at this distance, even the dwarves wouldn't be able to tell what colors we're flying. No. Proper sailors wait for dawn, so everyone keeps their tempers, their hulls and skulls free of holes."</p>
+
+<p>He gave Auron a sidelong glance, then spat over the rail. "We'll dock at dawn. Let 'em see us clear come sunrise."</p>
+
+<p>Auron stood beside the Captain for a moment longer, absorbing the last heatless lights of Solarie, watching the day turning to night and the colorful hue of the sky turning to the darkness helm of Lunara. He took one last look at the distant shore, a smudge of darkness pricked by a few defiant lights. They were a world away from the sun-scorched stones of the south. When it was too dark to see proper, he gave Oren a slow nod, his own thoughts churning, before turning from the rail. With a surefootedness that belied his heavy frame, he descended the ladder, leaving the biting wind behind for the close, thick air of the ship's hold.</p>
+
+<p>The quiet below was a different kind of heavy. It was filled with the scent of tar, damp wood, and the briny smell of the sea that had seeped into the very bones of the ship. Lamplight cast long, wavering shadows, making the cramped space feel both intimate and confining.</p>
+
+<p>Auron found a clear patch of floor and began his work. He laid out the plates of his armor, the steel gleaming dully in the low light. After weeks at sea, and despite having properly oiled the armor before storing it, the salty air had already started its insidious work, and spots of rust could be seen across many of the metal plates. He meticulously rubbed oil into every plate and joint, his movements practiced and focused. When the metal was clean, he picked up a thick wool blanket and a knife, then carefully cut it into long, thick strips. His armor, like most, had its own padded gambeson, but that was meant for milder climates. He lined the inside of his cuirass and greaves with the extra wool. The fit would be slightly awkward, maybe even clumsy, but a frozen paladin was a useless one.</p>
+
+<p>Nearby, Aran saw to his own tools. He took up his bow with careful hands, coiling the string loosely to avoid stressing the fibers after so much humidity. Aran checked the stave for hairline cracks, running his thumb along the wood and feeling for any sign of warping from the salt air. He examined his arrows one by one, checking each shaft for warping, the fletching for mildew, and the tips for rust.</p>
+
+<p>Lila perched atop a crate, rolling her dagger along a whetstone while humming cheerfully. She tested the edge with a flick of her thumb, grinning at the faint nick it left. Her crossbow got similar attention; she checked the trigger mechanism, dabbed oil into the joints, and grumbled at a bit of grit stuck beneath the latch. "Honestly, you'd think a merchant ship would be cleaner," she muttered, just loud enough for Kaela and Elara to hear.</p>
+
+<p>Kaela snorted. "Ain't here to keep your toys tidy, little miss. Ship's fine. Could use less elf perfume, though."</p>
+
+<p>Elara, sitting close, offered a gentle, knowing smile. "That is actually Eva's perfume, you know. The church used it after her bath. She'd run circles around you, everything smelling of lilacs and honey. I liked it so much that I asked for a flask for myself…"</p>
+
+<p>Kaela grunted, a sad smile on her face, and reached into her pouch. She pulled out the enchanted drawing, its edges catching the lantern's glow with a faint shimmer.</p>
+
+<p>Thalia, organizing her spellbook on the next crate over, noticed this and paused to look up. "Is the spell still holding?"</p>
+
+<p>Kaela's usual gruffness softened. She turned the drawing so Thalia could see. "Better than I hoped. I think I could swim to the bottom of the ocean with it and it'd come up clean. Even the sun can't fade it now, yeah?"</p>
+
+<p>Thalia's lips curled into a small, satisfied smile. "That parchment'll outlast this whole ship. Just don't feed it to a dragon."</p>
+
+<p>Kaela's thumb traced the stick-figure hands on the page, her eyes unfocused. "I can still hear her y'know?" she muttered, voice low. "Begging for stories, or worrying I'd leave 'er behind." She drew a breath, steadying herself.</p>
+
+<p>Elara reached over, her hand finding Kaela's arm. "She's safe, Kaela. It was better this way. The north is no place for a little one, not with what we're facing."</p>
+
+<p>Kaela nodded, jaw set, then tucked the drawing away with care. Any hint of vulnerability faded from her face, replaced by the sturdy resolve she wore more comfortably than armor. She glanced down at her rough leathers and the mismatched furs draped across her shoulders. "Summer up here's colder than winter back home," she muttered, pulling her furs tighter. "Never thought I'd miss the sun in the Kald'baerg."</p>
+
+<p>Thalia looked up from her notes, a spark of scholarly delight in her eyes. "You know, fun fact: the Kald'baerg Mountains literally means 'Cold Mountain Mountains.' 'Baerg' is 'mountain' in old giant-tongue, and somehow everyone just started adding 'Mountains' on the end when speaking Common, doubling it up!"</p>
+
+<p>Kaela let out a rough laugh. "Yeah, I know, little smarty ass. It's my language, remember?" But there was real fondness in her voice, and for a moment, the cold didn't seem so biting.</p>
+
+<div class="scene-break">✦ ✦ ✦</div>
+
+<p>In the deep and silent hour before sunrise, while the others were lost to sleep or their own quiet routines, Bryn made her way to the bow. The air had a physical presence — sharp and so cold it felt like breathing powdered glass. She positioned herself to face east, where the blackness of the sea met the bruised purple of the fading night sky.</p>
+
+<p>With hands clasped loosely before her, she bowed her head. The words of her prayer formed a whispered rhythm, a familiar litany spoken not to the uncaring wind, but to the coming light. She asked for clarity, for strength, for the endurance her companions would need in the day ahead.</p>
+
+<p>As the first sliver of Solarie's grace broke the horizon, a single, brilliant ray of gold cut across the waves. It touched the ship, and where it found Bryn, it did not merely illuminate her — it clung to her. A soft, golden nimbus formed around her silhouette, a fragile shell of light that seemed to hold the biting cold at bay. Frost on the ship's railing glittered in its radiance, and the mist of her breath turned to gold as she spoke.</p>
+
+<p>The air itself remained unforgivingly frigid, but a profound warmth bloomed deep within her chest, spreading through her limbs like a sunrise all her own. Her prayer had been heard. More than that, it had been answered.</p>
+
+<div class="scene-break">✦ ✦ ✦</div>
+
+<p>By the time Solarie pushed up from the sea, turning the clouds pale, the ship's company was ready. A patrol boat slipped from the docks, a long, sharp hull, prow shaped into the lean head of a sea hawk. Its crew wore furs lined with leather, faces hard, eyes sharper than any blade.</p>
+
+<p>The boats came together slow, oars cutting through the ice-spangled water. A figure at the bow called out in a clipped accent. "State your name and business."</p>
+
+<p>Oren stepped forward, voice easy but not careless. "I'm Captain Oren from the Wind's Whisper, out of Verdantheaven. Got cargo, and folk needing audience with the High Jarl."</p>
+
+<p>The patrol leader's eyes, the color of a frozen sea, swept over the group before fixing on Auron. The air, already thin and cold, seemed to grow tighter with tension. His lips peeled back from his teeth in a sneer that was anything but a smile.</p>
+
+<p>"No one mentioned a devil," he said, his voice a low, gravelly scrape. "We weren't told you were bringing demon-spawn to our shores." He spat on the deck, the glob freezing almost instantly. "It can swim back to whatever hell it crawled from. Things with horns don't set foot in Frosthelm."</p>
+
+<p>Heat rushed to Thalia's face. A sharp retort burned on her tongue. She shifted, fists clenched, ready to defend Auron with words or magic.</p>
+
+<p>A heavy hand settled on her shoulder, grounding her. She didn't need to look; the steady weight was Auron's. For a moment, she caught his eye. He was calm and unflinching, as if the man's words were nothing more than the noise of waves crashing against the hull, his face carrying that same weary resolve she'd seen beneath the moonless sky the night before.</p>
+
+<p>In the shadowed quiet of the hold, his words had come low and steady, their meaning as heavy as the ship's timbers. "I'm assuming this place won't be any more welcoming to me than any other I have been. If it comes to this… here's what you'll have to say…"</p>
+
+<p>Now her breath caught in her throat, frozen by the cold air and by the revulsion curling in her chest. Thalia stared past the patrol leader, the words she'd rehearsed tasting like ash on her tongue.</p>
+
+<p>"He won't be any trouble, good sir." Her voice was clipped and tight. "His presence is a…" She swallowed hard, the effort painful. "A regrettable necessity. Believe me," she added, forcing a bitter edge into her tone, "if he weren't needed for our task, I'd have pushed him overboard myself."</p>
+
+<p>For a moment, nothing moved but the wind and the slow, heavy boots of the patrol as they came aboard. One man spat at Auron's feet. Another pressed the flat of his drawn sword against Auron's cheek, forcing his head up. The iron was so cold it burned his skin, but Auron's face remained cold and impassive as stone.</p>
+
+<p>All around, his companions reacted. Kaela's jaw clenched, and her massive hand gripped the ship's railing so tightly that ancient, iron-hard wood splintered beneath her fingers with a crack loud enough to startle the nearest guard. Aran's fingers twitched toward his bow, and Bryn's knuckles whitened on her holy symbol.</p>
+
+<p>Thalia's eyes darted from face to face, her lips barely moving. Within the minds of her companions came a sudden, insistent whisper — not in words, but in feeling. <em>Hold. Wait. Not here. Not now.</em> It was her magic, quiet and forceful, threading through each of them, dampening their rage and fear. Auron caught her glance and, even under threat, managed to convey a single, unspoken command with his eyes alone: <em>Stand down. We do not fight here.</em></p>
+
+<p>The patrol leader watched, weighing his next words, a cold threat glinting in his eyes.</p>
+
+<p>"You're only coming ashore because word reached us from the Jarl's own hand. You'll get your audience, and only because we were ordered not to hinder you. But know this — if you make trouble, or if your usefulness runs out, we'll be glad to see you hang."</p>
+
+<p>He jerked his head, giving the signal. The guards stepped back, swords still drawn and eyes full of loathing, as Wind's Whisper was finally guided in toward the dock. Even in the golden light of morning, the air felt colder than ever.</p>
+
+<div class="scene-break">✦ ✦ ✦</div>
+
+<p>Frosthelm revealed itself slowly, an unforgiving jewel set tight between the iron-gray sea and towering mountains draped in eternal ice. The docks, reinforced with thick bands of steel, shimmered under a skin of frost. Ships crowded close, their wooden hulls grinding against each other like uneasy beasts tethered too near.</p>
+
+<p>Above the bustling docks, Frosthelm clung stubbornly to the mountainside. The buildings, crafted from sturdy dwarven stone, were carved with intricate runes that emitted faint, comforting pulses of warmth. Heavy timber walls supported steep roofs blanketed thickly in untouched snow. On more prominent buildings, dragons writhed silently in carved wood, fierce guardians eternally challenging the wind.</p>
+
+<p>At the dock's end stood Envoy Ragna, unmistakably authoritative, bronze-skinned with intricate tattoos curling gracefully over sharp cheekbones. Her intense green eyes missed nothing. "I am Ragna, envoy of High Jarl Eirikr Stormheart," she announced clearly, voice cutting easily through the noise of the harbor. "You are expected."</p>
+
+<p>She guided them briskly from the docks into the city's heart. Away from the biting coastal winds, a surprising warmth enveloped them. Steam rose lazily from grates embedded in the cobblestone streets.</p>
+
+<p>"The city is… warm," Thalia murmured, her fatigue momentarily forgotten in astonishment.</p>
+
+<p>A subtle pride softened Ragna's stern expression. "Beneath us lie hot springs, gifts from deep within the earth. Long ago, dwarven smiths harnessed their warmth. Iron veins run beneath the streets, carrying heated water. They keep frost from our homes, conserving wood for ships and shields."</p>
+
+<p>Auron's attention lingered on racks of finely crafted weapons, blades glistening with unusual brilliance.</p>
+
+<p>"Finest steel in Ethernos," Ragna noted proudly. "Forged from mountain ores, quenched in waters drawn from deepest ice. It does not break."</p>
+
+<p>Yet Frosthelm's pride had its stark edge. At the central plaza, the group halted abruptly. Away from the pyre's warmth, a solitary pole stood in frigid isolation. Chained to it was a man, stripped naked, shivering uncontrollably, his skin bruised purple and blue.</p>
+
+<p>Elara gasped. "What is this? By the gods —"</p>
+
+<p>Ragna's voice was unflinching. "A thief. Caught stealing from the traders' guild. This is our justice. We have no prisons."</p>
+
+<p>Bryn's horror sharpened her tone. "You leave him to die?"</p>
+
+<p>"Judgment by cold and endurance," Ragna corrected firmly. "His honor is forfeit, his shame public. Survive a full day and night, and his honor is restored. Few survive. But honor is Frosthelm's only true currency."</p>
+
+<p>Their silence deepened, the chilling lesson starkly clear. The city's harsh ingenuity and rugged beauty were matched equally by its uncompromising laws.</p>`;
+
+document.getElementById('chapter19-text').innerHTML = chapter19;
+
+// Modal logic
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on background click
+document.querySelectorAll('.modal-bg').forEach(bg => {
+  bg.addEventListener('click', e => {
+    if (e.target === bg) closeModal(bg.id);
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-bg.open').forEach(m => closeModal(m.id));
+  }
+});
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
