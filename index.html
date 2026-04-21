@@ -34,6 +34,18 @@
       overflow-x: hidden;
     }
 
+
+    /* ── MAX WIDTH ── */
+    .page-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      max-width: 1400px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     /* ── HEADER ── */
     header {
       position: fixed;
@@ -72,8 +84,8 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 3rem 5rem;
+      justify-content: center;
+      padding: 8rem 3rem 5rem;
       position: relative;
       overflow: hidden;
     }
@@ -398,7 +410,7 @@
     .modal-bg {
       position: fixed;
       inset: 0;
-      background: rgba(12,11,9,0.96);
+      background: rgba(18,16,13,0.98);
       z-index: 200;
       opacity: 0;
       pointer-events: none;
@@ -461,8 +473,8 @@
     /* poem styles */
     .poem-text {
       font-family: var(--serif);
-      font-size: 1.05rem;
-      line-height: 2.1;
+      font-size: 1.2rem;
+      line-height: 2.2;
       color: var(--cream);
     }
     .poem-stanza { margin-bottom: 2rem; }
@@ -470,9 +482,9 @@
 
     /* prose styles */
     .prose {
-      font-size: 0.95rem;
-      line-height: 1.9;
-      color: #b0a898;
+      font-size: 1.05rem;
+      line-height: 2.0;
+      color: #d4cbbf;
     }
     .prose p { margin-bottom: 1.4rem; }
     .prose p:first-of-type::first-letter {
@@ -603,7 +615,7 @@
 </header>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" style="max-width:1400px;margin:0 auto;">
   <div class="hero-rule"></div>
   <p class="hero-label">Portfolio — MSc Computational Media Design</p>
   <h1 class="hero-name">Victor G.<br><em>Noya</em></h1>
