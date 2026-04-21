@@ -229,20 +229,32 @@
     /* ── DESIGN GRID ── */
     .design-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
       gap: 1.5px;
     }
 
     .design-item {
       position: relative;
-      aspect-ratio: 4/3;
       overflow: hidden;
       background: var(--surface);
       cursor: pointer;
     }
 
-    .design-item.tall { aspect-ratio: 3/4; }
-    .design-item.wide { grid-column: span 2; aspect-ratio: 16/7; }
+    .design-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* magazine: top left wide */
+    .design-magazine { aspect-ratio: 16/8; }
+    /* book cover: right column, tall, spanning both rows */
+    .design-bookcover { grid-column: 2; grid-row: span 2; }
+    .design-bookcover img { aspect-ratio: 2/3; min-height: 500px; }
+    /* poster + ehellen: bottom left, side by side */
+    .design-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; }
+    .design-poster img, .design-ehellen img { aspect-ratio: 4/3; }
 
     .design-item img {
       width: 100%; height: 100%;
@@ -313,7 +325,7 @@
     /* ── PHOTO GRID ── */
     .photo-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
       gap: 1.5px;
     }
@@ -321,10 +333,7 @@
       position: relative;
       overflow: hidden;
       background: var(--surface);
-      cursor: pointer;
-    }
-    .photo-item:first-child {
-      grid-row: span 2;
+      cursor: zoom-in;
     }
     .photo-item img {
       width: 100%;
@@ -333,14 +342,15 @@
       display: block;
       transition: transform 0.6s ease;
     }
-    .photo-item:first-child img {
-      aspect-ratio: 3/4;
-      min-height: 500px;
-    }
-    .photo-item:not(:first-child) img {
-      aspect-ratio: 4/3;
-    }
     .photo-item:hover img { transform: scale(1.04); }
+    /* autumn: top, full width */
+    .photo-autumn { grid-column: span 2; }
+    .photo-autumn img { aspect-ratio: 16/7; }
+    /* puddle: left, tall */
+    .photo-puddle { grid-row: span 2; }
+    .photo-puddle img { aspect-ratio: 3/4; min-height: 480px; }
+    /* dotpattern + running: right column stacked */
+    .photo-dotpattern img, .photo-running img { aspect-ratio: 4/3; }
     .photo-link-hint {
       position: absolute;
       top: 0.8rem;
@@ -769,8 +779,8 @@
 
   <div class="design-grid fade-up">
 
-    <!-- SciPhy Magazine -->
-    <div class="design-item wide" onclick="openModal('modal-sciphy')">
+    <!-- SciPhy Magazine: top left -->
+    <div class="design-item design-magazine" onclick="openModal('modal-sciphy')">
       <img src="magazine-cover.jpg" alt="SciPhy Magazine Cover">
       <div class="design-overlay">
         <p class="overlay-title">SciPhy — Science & Physics Magazine</p>
@@ -778,8 +788,8 @@
       </div>
     </div>
 
-    <!-- Book Cover -->
-    <div class="design-item" onclick="openModal('modal-bookcover')">
+    <!-- Book Cover: right column, tall -->
+    <div class="design-item design-bookcover" onclick="openModal('modal-bookcover')">
       <img src="design-bookcover.jpg" alt="Boa Noite, Aimée Book Cover">
       <div class="design-overlay">
         <p class="overlay-title">Boa Noite, Aimée — Book Cover</p>
@@ -787,21 +797,21 @@
       </div>
     </div>
 
-    <!-- Show Especial Poster -->
-    <div class="design-item" onclick="openModal('modal-poster')">
-      <img src="design-poster.jpg" alt="Show Especial Thais Mattos Poster">
-      <div class="design-overlay">
-        <p class="overlay-title">Show Especial Thais Mattos</p>
-        <p class="overlay-meta">Event Poster · 2014</p>
+    <!-- Poster + E.Hellen: bottom left row -->
+    <div class="design-bottom">
+      <div class="design-item design-poster" onclick="openModal('modal-poster')">
+        <img src="design-poster.jpg" alt="Show Especial Thais Mattos Poster">
+        <div class="design-overlay">
+          <p class="overlay-title">Show Especial Thais Mattos</p>
+          <p class="overlay-meta">Event Poster · 2014</p>
+        </div>
       </div>
-    </div>
-
-    <!-- E.Hellen Business Card -->
-    <div class="design-item" onclick="openModal('modal-ehellen')">
-      <img src="bc-front.jpg" alt="E.Hellen Business Card Front">
-      <div class="design-overlay">
-        <p class="overlay-title">E.Hellen Traduções — Brand Identity</p>
-        <p class="overlay-meta">Business Card · Identity Design</p>
+      <div class="design-item design-ehellen" onclick="openModal('modal-ehellen')">
+        <img src="bc-front.jpg" alt="E.Hellen Business Card Front">
+        <div class="design-overlay">
+          <p class="overlay-title">E.Hellen Traduções — Brand Identity</p>
+          <p class="overlay-meta">Business Card · Identity Design</p>
+        </div>
       </div>
     </div>
 
@@ -818,23 +828,23 @@
 
   <div class="photo-grid fade-up">
 
-    <div class="photo-item" onclick="openLightbox('photo-autumn.jpg')" style="cursor:zoom-in;">
+    <div class="photo-item photo-autumn" onclick="openLightbox('photo-autumn.jpg')">
       <img src="photo-autumn.jpg" alt="Autumn Park">
       <span class="view-full-btn">View full ⤢</span>
     </div>
 
-    <div class="photo-item" onclick="openLightbox('photo-dotpattern.jpg')" style="cursor:zoom-in;">
+    <div class="photo-item photo-puddle" onclick="openLightbox('photo-puddle.jpg')">
+      <img src="photo-puddle.jpg" alt="Puddle Reflection">
+      <span class="view-full-btn">View full ⤢</span>
+    </div>
+
+    <div class="photo-item photo-dotpattern" onclick="openLightbox('photo-dotpattern.jpg')">
       <img src="photo-dotpattern.jpg" alt="Dot Pattern">
       <span class="view-full-btn">View full ⤢</span>
     </div>
 
-    <div class="photo-item" onclick="openLightbox('photo-running.jpg')" style="cursor:zoom-in;">
+    <div class="photo-item photo-running" onclick="openLightbox('photo-running.jpg')">
       <img src="photo-running.jpg" alt="Running">
-      <span class="view-full-btn">View full ⤢</span>
-    </div>
-
-    <div class="photo-item" onclick="openLightbox('photo-puddle.jpg')" style="cursor:zoom-in;">
-      <img src="photo-puddle.jpg" alt="Puddle Reflection">
       <span class="view-full-btn">View full ⤢</span>
     </div>
 
