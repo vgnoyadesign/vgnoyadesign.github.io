@@ -313,7 +313,8 @@
     /* ── PHOTO GRID ── */
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
       gap: 1.5px;
     }
     .photo-item {
@@ -322,16 +323,40 @@
       background: var(--surface);
       cursor: pointer;
     }
-    .photo-item:first-child { grid-column: span 2; }
+    .photo-item:first-child {
+      grid-row: span 2;
+    }
     .photo-item img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
-      aspect-ratio: 1;
       transition: transform 0.6s ease;
     }
-    .photo-item:first-child img { aspect-ratio: 2/1; }
+    .photo-item:first-child img {
+      aspect-ratio: 3/4;
+      min-height: 500px;
+    }
+    .photo-item:not(:first-child) img {
+      aspect-ratio: 4/3;
+    }
     .photo-item:hover img { transform: scale(1.04); }
+    .photo-link-hint {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: rgba(12,11,9,0.75);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #c9a84c;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.6rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .photo-item:hover .photo-link-hint { opacity: 1; }
 
     /* ── WRITING ── */
     .writing-grid {
@@ -723,19 +748,31 @@
   <div class="photo-grid fade-up">
 
     <div class="photo-item">
-      <img src="photo-autumn.jpg" alt="Autumn Park" style="aspect-ratio:2/1;width:100%;object-fit:cover;">
+      <a href="photo-autumn.jpg" target="_blank">
+        <img src="photo-autumn.jpg" alt="Autumn Park">
+        <span class="photo-link-hint">Open ↗</span>
+      </a>
     </div>
 
     <div class="photo-item">
-      <img src="photo-dotpattern.jpg" alt="Dot Pattern" style="aspect-ratio:1;width:100%;object-fit:cover;">
+      <a href="photo-dotpattern.jpg" target="_blank">
+        <img src="photo-dotpattern.jpg" alt="Dot Pattern">
+        <span class="photo-link-hint">Open ↗</span>
+      </a>
     </div>
 
     <div class="photo-item">
-      <img src="photo-running.jpg" alt="Running" style="aspect-ratio:1;width:100%;object-fit:cover;">
+      <a href="photo-running.jpg" target="_blank">
+        <img src="photo-running.jpg" alt="Running">
+        <span class="photo-link-hint">Open ↗</span>
+      </a>
     </div>
 
     <div class="photo-item">
-      <img src="photo-puddle.jpg" alt="Puddle Reflection" style="aspect-ratio:1;width:100%;object-fit:cover;">
+      <a href="photo-puddle.jpg" target="_blank">
+        <img src="photo-puddle.jpg" alt="Puddle Reflection">
+        <span class="photo-link-hint">Open ↗</span>
+      </a>
     </div>
 
   </div>
@@ -830,7 +867,10 @@
     <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
       A complete book cover design for a debut YA fantasy novel, including the front cover illustration and typography, spine layout, and full back cover with synopsis, author biography, publisher logo, barcode, and excerpt pull quote. Demonstrates integrated typographic and visual thinking across a single printed object.
     </p>
-    <img src="design-bookcover.jpg" alt="Boa Noite Aimee Book Cover" style="width:100%;display:block;margin:0 auto;">
+    <a href="design-bookcover.jpg" target="_blank" style="display:block;position:relative;">
+      <img src="design-bookcover.jpg" alt="Boa Noite Aimee Book Cover" style="width:100%;display:block;">
+      <span style="position:absolute;top:1rem;right:1rem;background:rgba(12,11,9,0.8);border:1px solid #2a2720;color:#c9a84c;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;">View full size ↗</span>
+    </a>
   </div>
 </div>
 
@@ -845,7 +885,10 @@
     <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;">
       Large-format event poster (48×63cm) for a live music event at a Rio de Janeiro shopping center. The design uses layered watercolor washes, a linear guitar illustration, and typographic hierarchy across multiple levels of information: headline act, event details, venue, and time.
     </p>
-    <img src="design-poster.jpg" alt="Show Especial Poster" style="width:100%;max-width:600px;display:block;margin:0 auto;">
+    <a href="design-poster.jpg" target="_blank" style="display:block;position:relative;max-width:600px;margin:0 auto;">
+      <img src="design-poster.jpg" alt="Show Especial Poster" style="width:100%;display:block;">
+      <span style="position:absolute;top:1rem;right:1rem;background:rgba(12,11,9,0.8);border:1px solid #2a2720;color:#c9a84c;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;">View full size ↗</span>
+    </a>
   </div>
 </div>
 
@@ -861,7 +904,10 @@
       A two-sided business card using dictionary-definition typography as a background texture — a conceptual approach that embeds the nature of the service into the visual language of the card itself. The front uses a minimal logo mark with a gradient gold ring; the back carries contact and services information against an all-over orange field. The system demonstrates brand thinking that extends concept into execution.
     </p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:600px;">
-      <img src="design-ehellen-bc.png" alt="E.Hellen Business Card" style="width:100%;display:block;">
+      <a href="design-ehellen-bc.png" target="_blank" title="View full size" style="display:block;position:relative;">
+        <img src="design-ehellen-bc.png" alt="E.Hellen Business Card" style="width:100%;display:block;max-width:100%;">
+        <span style="position:absolute;top:1rem;right:1rem;background:rgba(12,11,9,0.8);border:1px solid #2a2720;color:#c9a84c;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;">View full size ↗</span>
+      </a>
     </div>
   </div>
 </div>
