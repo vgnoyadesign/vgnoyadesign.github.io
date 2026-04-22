@@ -721,8 +721,24 @@
       #contact { padding: 3rem 1.2rem; grid-template-columns: 1fr; }
 
       /* About */
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .about-text p { font-size: 1rem; max-width: 100% !important; }
+      #about .about-grid {
+        display: block !important;
+        width: 100% !important;
+      }
+      .about-text {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .about-text p {
+        font-size: 1rem !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .about-meta {
+        width: 100% !important;
+        margin-top: 2rem;
+      }
 
       /* Section intros */
       .section-intro { max-width: 100% !important; font-size: 0.95rem; }
