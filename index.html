@@ -702,15 +702,67 @@
       .about-grid, .writing-grid, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
       .design-grid { grid-template-columns: 1fr 1fr; }
       .design-item.wide { grid-column: span 2; }
-      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); height: auto !important; }
       .photo-item:first-child { grid-column: span 2; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
 
     @media (max-width: 600px) {
       nav { display: none; }
-      .design-grid, .photo-grid { grid-template-columns: 1fr; }
-      .design-item.wide, .photo-item:first-child { grid-column: span 1; }
+
+      /* Hero */
+      .hero-name { font-size: 3rem; }
+      .hero-desc { font-size: 0.95rem; }
+      .scroll-hint { display: none; }
+      #hero { padding: 6rem 1.2rem 3rem; }
+
+      /* Sections */
+      section { padding: 3rem 1.2rem; }
+      #contact { padding: 3rem 1.2rem; grid-template-columns: 1fr; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-text p { font-size: 1rem; max-width: 100% !important; }
+
+      /* Section intros */
+      .section-intro { max-width: 100% !important; font-size: 0.95rem; }
+
+      /* Design grid: single column on mobile */
+      .design-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      .design-bookcover { grid-column: 1 !important; grid-row: auto !important; }
+      .design-bottom { grid-template-columns: 1fr !important; }
+      .design-item { aspect-ratio: 4/3 !important; min-height: unset !important; }
+      .design-bookcover img { min-height: unset !important; aspect-ratio: 4/3 !important; }
+
+      /* Photo grid: single column on mobile */
+      .photo-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        height: auto !important;
+      }
+      .photo-autumn, .photo-puddle, .photo-dotpattern, .photo-running {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+      .photo-autumn img { aspect-ratio: 4/3 !important; }
+      .photo-puddle img { min-height: unset !important; aspect-ratio: 4/3 !important; }
+      .photo-dotpattern img, .photo-running img { aspect-ratio: 4/3 !important; }
+
+      /* Writing cards */
+      .writing-grid { grid-template-columns: 1fr; gap: 2px; }
+      .writing-card { padding: 2rem 1.5rem; }
+      .writing-title { font-size: 1.4rem; }
+
+      /* Modals */
+      .modal { padding: 1.5rem; margin: 4rem auto; }
+      .modal-title { font-size: 1.6rem; }
+      .modal-close { top: 1rem; right: 1rem; }
+
+      /* Contact */
+      .contact-left .contact-title { font-size: 2rem; }
     }
   </style>
 </head>
@@ -847,8 +899,8 @@
   </div>
 
   <div class="section-intro fade-up">
-    <p>I have always been drawn to how good photography makes extremely complex concepts look simple. How the understanding of light, exposure, and balance can make an ordinary everyday picture look extraordinary. How a small shift in perspective can turn a stroll through a park into something no one has seen before.</p>
-    <p>Photography is art in a way that is different from any other form. To take an everyday scene and make it pop in a way it has never been seen, to see an image before it is captured. I am particularly drawn to nature and movement, that spontaneous moment that lasts for less than a heartbeat and will never exist again.</p>
+    <p>I have always been drawn to how good photography makes extremely complex concepts look simple. How an understanding of light, exposure, and balance can make an ordinary everyday picture look extraordinary. How a small shift in perspective can turn a stroll through a park into something no one has seen before.</p>
+    <p>Photography is art in a way that is different from any other form. To take an everyday scene and make it pop in a way it has never been seen, to see an image before it is captured. I am particularly drawn to nature and movement, the spontaneous moments that last for a heartbeat and will never exist again.</p>
   </div>
 
   <div class="photo-grid fade-up">
